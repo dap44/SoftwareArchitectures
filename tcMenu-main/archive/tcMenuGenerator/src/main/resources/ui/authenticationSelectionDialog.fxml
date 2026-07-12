@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c)  2016-2019 https://www.thecoderscorner.com (Dave Cherry).
+  ~ This product is licensed under an Apache license, see the LICENSE file in the top-level directory.
+  ~
+  -->
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<BorderPane styleClass="background" stylesheets="@tcmenu-extras.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecoderscorner.menu.editorui.controller.ChooseAuthenticatorController">
+    <padding><Insets topRightBottomLeft="10"/></padding>
+   <bottom>
+      <ButtonBar BorderPane.alignment="CENTER">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#onHelpPressed" text="%core.online.help" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancelPressed" text="%core.cancel.text" />
+            <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#onCreatePressed" text="%auth.sel.set.button" />
+        </buttons>
+      </ButtonBar>
+   </bottom>
+   <styleClass>
+      <String fx:value="background" />
+   </styleClass>
+   <center>
+      <GridPane hgap="4" vgap="4" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES"  />
+          <ColumnConstraints hgrow="SOMETIMES"  />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints  vgrow="SOMETIMES" />
+          <RowConstraints  vgrow="SOMETIMES" />
+          <RowConstraints  vgrow="SOMETIMES" />
+          <RowConstraints  vgrow="SOMETIMES" />
+          <RowConstraints  vgrow="SOMETIMES" />
+          <RowConstraints  vgrow="SOMETIMES" />
+          <RowConstraints  vgrow="SOMETIMES" />
+          <RowConstraints  vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <RadioButton fx:id="noAuthRadio" mnemonicParsing="false" selected="true" text="%auth.sel.no.auth" GridPane.columnSpan="2">
+               <toggleGroup>
+                  <ToggleGroup fx:id="main" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="eepromAuthRadio" mnemonicParsing="false" text="%auth.sel.eeprom.auth" toggleGroup="$main" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Label fx:id="eepromStartLabel" text="%auth.sel.eeprom.start" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="eepromStartField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="pinFlashLabel" text="%auth.sel.pin.flash.loc" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="variableFlashLabel" text="%auth.sel.flash.precanned" GridPane.columnSpan="2" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="eepromNumRemotes" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <RadioButton fx:id="flashAuthRadio" mnemonicParsing="false" text="%auth.sel.flash.auth" toggleGroup="$main" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+            <TextField fx:id="pinFlashField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="eepromNumRemLabel" text="%auth.sel.num.flash.pairs" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Label>
+            <BorderPane GridPane.columnSpan="2" GridPane.rowIndex="7">
+               <center>
+                  <ListView fx:id="flashVarList" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="15.0" right="5.0" />
+                     </BorderPane.margin>
+                  </ListView>
+               </center>
+               <right>
+                  <VBox spacing="4.0" BorderPane.alignment="CENTER" fillWidth="true">
+                     <children>
+                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#onFlashAddRemote" maxWidth="99999" text="%core.add.button" />
+                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#onFlashRemoveRemote" maxWidth="99999" text="%core.remove.button" />
+                     </children>
+                  </VBox>
+               </right>
+            </BorderPane>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </GridPane>
+   </center>
+</BorderPane>

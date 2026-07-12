@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<GridPane fx:controller="com.thecoderscorner.menu.editorui.embed.PairingController" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES"  />
+    <ColumnConstraints hgrow="SOMETIMES"  />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints  vgrow="SOMETIMES" />
+    <RowConstraints  vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="%ec.pairing.required.title" GridPane.columnSpan="2">
+         <font>
+            <Font size="18.0" />
+         </font>
+          <padding><Insets bottom="12" /></padding>
+      </Label>
+      <VBox spacing="10.0" GridPane.rowIndex="1">
+         <children>
+            <Label text="%ec.pairing.desc1" wrapText="true" />
+            <Label text="%ec.pairing.desc2" wrapText="true" />
+            <Label text="%ec.pairing.desc3" wrapText="true" />
+         </children>
+      </VBox>
+      <ButtonBar  GridPane.columnSpan="2" GridPane.rowIndex="3">
+        <buttons>
+          <Button fx:id="pairingButton" mnemonicParsing="false" onAction="#onStartPairing" text="%ec.pairing.start.btn" />
+        </buttons>
+      </ButtonBar>
+      <Label text="%ec.pairing.status" GridPane.rowIndex="2">
+          <padding>
+              <Insets topRightBottomLeft="10.0" />
+          </padding>
+      </Label>
+      <Label fx:id="pairingStatus" text="--" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <ImageView fitHeight="168.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <image>
+            <Image url="@../fximg/pairingExample.jpg" />
+         </image>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </ImageView>
+   </children>
+   <padding>
+      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+   </padding>
+</GridPane>

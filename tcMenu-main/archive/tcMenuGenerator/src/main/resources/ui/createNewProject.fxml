@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<BorderPane styleClass="background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecoderscorner.menu.editorui.controller.NewProjectController">
+   <center>
+      <VBox spacing="4.0" BorderPane.alignment="CENTER">
+         <children>
+            <RadioButton fx:id="newOnlyRadio" mnemonicParsing="false" onAction="#onModeChange" selected="true" text="%create.project.new.not.saved">
+               <toggleGroup>
+                  <ToggleGroup fx:id="newmode" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="createNewRadio" mnemonicParsing="false" onAction="#onModeChange" selected="true" text="%create.project.new.saved.disc" toggleGroup="$newmode" />
+            <GridPane vgap="4" hgap="4">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%create.project.location" />
+                  <TextField fx:id="locationTextField" editable="false" GridPane.columnIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%app.info.project.name" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%core.platform" GridPane.rowIndex="2" />
+                  <TextField fx:id="projectNameField" onKeyTyped="#onTextChanged" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="platformCombo" onAction="#onPlatformChanged" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="dirChooseButton" mnemonicParsing="false" onAction="#onDirectorySelection"  text="%core.choose.button" GridPane.columnIndex="2" />
+                  <CheckBox fx:id="cppMainCheckbox" mnemonicParsing="false" text="%app.info.check.use.cpp.main" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="%create.project.namespace" GridPane.rowIndex="3" />
+                  <TextField fx:id="namespaceField" onKeyTyped="#onTextChanged" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <CheckBox fx:id="enableI18nSupportCheck" mnemonicParsing="false" text="%create.project.enable.i18n" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
+   <padding>
+      <Insets topRightBottomLeft="10" />
+   </padding>
+   <bottom>
+      <ButtonBar BorderPane.alignment="CENTER">
+        <buttons>
+          <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancel" text="%core.cancel.text" />
+            <Button fx:id="createButton" defaultButton="true" mnemonicParsing="false" onAction="#onCreate" text="Create &gt;&gt;" />
+        </buttons>
+      </ButtonBar>
+   </bottom>
+</BorderPane>

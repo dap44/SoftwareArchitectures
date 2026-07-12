@@ -1,0 +1,168 @@
+package com.thecoderscorner.menu.domain.state;
+
+import java.util.Objects;
+
+/**
+ * A portable color that represents a color in the RGBA space with single byte values for each entry (between 0..255).
+ * It can convert to and from web color format strings.
+ */
+public class PortableColor {
+    public static final PortableColor BLACK = new PortableColor(0, 0, 0);
+    public static final PortableColor WHITE = new PortableColor(255, 255, 255);
+    public static final PortableColor RED = new PortableColor(255, 0, 0);
+    public static final PortableColor INDIGO = new PortableColor("#4B0082");
+    public static final PortableColor DARK_GREY = new PortableColor(80, 80, 80);
+    public static final  PortableColor GREY = new PortableColor(150, 150, 150);
+    public static final PortableColor LIGHT_GRAY = new PortableColor(200, 200, 200);
+    public static final PortableColor DARK_SLATE_BLUE = new PortableColor(72, 61, 139);
+    public static final  PortableColor ANTIQUE_WHITE = new PortableColor(250, 235, 215);
+    public static final  PortableColor DARK_BLUE = new PortableColor(0, 0, 139);
+    public static final PortableColor CRIMSON = new PortableColor(220, 20, 60);
+    public static final PortableColor CORAL = new PortableColor(0xff, 0x7f, 0x50);
+    public static final PortableColor CORNFLOWER_BLUE = new PortableColor(100, 149, 237);
+    public static final PortableColor BLUE = new PortableColor(0, 0, 255);
+    public static final PortableColor GREEN = new PortableColor(0, 255, 0);
+
+    private final int red;
+    private final int green;
+    private final int blue;
+    private final int alpha;
+
+    /**
+     * Create a color from RGB with alpha set to full (255), each value from 0 to 255
+     *
+     * @param red   the red component
+     * @param green the green component
+     * @param blue  the blue component
+     */
+    public PortableColor(int red, int green, int blue) {
+        this(red, green, blue, 255);
+    }
+
+    /**
+     * Create a color from RGBA using values from 0 to 255
+     *
+     * @param red   the red component
+     * @param green the green component
+     * @param blue  the blue component
+     * @param alpha the alpha
+     */
+    public PortableColor(int red, int green, int blue, int alpha) {
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.alpha = alpha;
+    }
+
+    /**
+     * Create a color object from a web color code such as #FFFFFF
+     *
+     * @param htmlCode the html code
+     */
+    public PortableColor(String htmlCode) {
+        if(htmlCode == null) {
+            red = green = blue = alpha = 0;
+            return;
+        }
+        if (htmlCode.startsWith("#") && htmlCode.length() == 4) {
+            red = (parseHex(htmlCode.charAt(1)) << 4);
+            green = (parseHex(htmlCode.charAt(2)) << 4);
+            blue = (parseHex(htmlCode.charAt(3)) << 4);
+            alpha = 255;
+            return;
+        }
+        if (htmlCode.startsWith("#") && htmlCode.length() >= 7) {
+            red = ((parseHex(htmlCode.charAt(1)) << 4) + parseHex(htmlCode.charAt(2)));
+            green = ((parseHex(htmlCode.charAt(3)) << 4) + parseHex(htmlCode.charAt(4)));
+            blue = ((parseHex(htmlCode.charAt(5)) << 4) + parseHex(htmlCode.charAt(6)));
+            if (htmlCode.length() == 9) {
+                alpha = ((parseHex(htmlCode.charAt(7)) << 4) + parseHex(htmlCode.charAt(8)));
+            } else alpha = 255;
+            return;
+        }
+
+        red = green = blue = 0;
+        alpha = 255;
+    }
+
+    private static int parseHex(char val) {
+        if (val >= '0' && val <= '9') return (short) (val - '0');
+        val = Character.toUpperCase(val);
+        if (val >= 'A' && val <= 'F') return (short) (val - ('A' - 10));
+        return 0;
+    }
+
+    /**
+     * @return red component between 0 and 255
+     */
+    public int getRed() {
+        return red;
+    }
+
+    /**
+     * @return green component between 0 and 255
+     */
+    public int getGreen() {
+        return green;
+    }
+
+    /**
+     * @return blue component between 0 and 255
+     */
+    public int getBlue() {
+        return blue;
+    }
+
+    /**
+     * @return alpha component between 0 and 255
+     */
+    public int getAlpha() {
+        return alpha;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("#%02X%02X%02X%02X", red, green, blue, alpha);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PortableColor that = (PortableColor) o;
+        return red == that.red &&
+                green == that.green &&
+                blue == that.blue &&
+                alpha == that.alpha;
+    }
+
+    public int asArgb() {
+        return (alpha << 24) | (red << 16) | (green << 8) | blue;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(red, green, blue, alpha);
+    }
+
+    public String toHtml() {
+        return String.format("#%02X%02X%02X", red, green, blue);
+    }
+
+    public static PortableColor asPortableColor(int argb) {
+        int b = (argb & 0xff);
+        int g = ((argb) >>> 8) & 0xFF;
+        int r = ((argb) >>> 16) & 0xFF;
+        int a = ((argb) >>> 24) & 0xFF;
+        return new PortableColor(r, g, b, a);
+    }
+
+    public PortableColor applyAlphaChannel() {
+        double al = alpha / 255.0;
+        double r = (red / 255.0) * al;
+        double g = (green / 255.0) * al;
+        double b = (blue / 255.0) * al;
+
+        return new PortableColor((int) (r * 255), (int) (g * 255), (int) (b * 255), 255);
+    }
+}

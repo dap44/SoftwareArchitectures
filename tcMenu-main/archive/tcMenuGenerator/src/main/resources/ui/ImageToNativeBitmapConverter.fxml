@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane vgap="4" hgap="4" onKeyReleased="#onKeyReleased" styleClass="background"
+          xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.thecoderscorner.menu.editorui.gfxui.CreateBitmapWidgetController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.5"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.5"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.5"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="24.5"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+    </rowConstraints>
+    <padding>
+        <Insets topRightBottomLeft="10" />
+    </padding>
+    <GridPane vgap="4" hgap="4" onKeyReleased="#onKeyReleased" fx:id="imageGridPane" GridPane.columnSpan="4"
+              GridPane.columnIndex="0" GridPane.rowIndex="1">
+    </GridPane>
+    <Label text="%bitmap.create.title" GridPane.columnSpan="2"/>
+    <Label text="%bitmap.var.name.use" GridPane.rowIndex="3"/>
+    <TextField fx:id="variableField" promptText="variableName" GridPane.columnIndex="1" GridPane.columnSpan="2"
+               GridPane.rowIndex="3"/>
+
+    <CheckBox fx:id="clipboardCheckBox" mnemonicParsing="false" GridPane.rowIndex="5"
+              text="%bitmap.create.clipboard" GridPane.columnIndex="1" GridPane.columnSpan="2">
+        <padding>
+            <Insets left="5.0"/>
+        </padding>
+    </CheckBox>
+    <ButtonBar GridPane.columnSpan="4" GridPane.rowIndex="6">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#onClose" text="%core.close.button" cancelButton="true"/>
+            <Button mnemonicParsing="false" onAction="#onOnlineHelp" text="%core.online.help"/>
+            <Button fx:id="loadImageButton" mnemonicParsing="false" onAction="#onLoadImage" text="%bitmap.load.image"/>
+            <Button fx:id="newImgButton" mnemonicParsing="false" onAction="#onNewImage" text="%bitmap.add.image"/>
+            <Button fx:id="pasteImgButton" mnemonicParsing="false" onAction="#onPasteImage"
+                    text="%bitmap.paste.image"/>
+            <Button fx:id="createWidgetButton" mnemonicParsing="false" onAction="#onCreateWidget"
+                    text="%bitmap.create.widget"/>
+            <Button fx:id="createBitmapButton" mnemonicParsing="false" onAction="#onCreateBitmaps"
+                    text="%bitmap.create.bitmap"/>
+        </buttons>
+    </ButtonBar>
+</GridPane>

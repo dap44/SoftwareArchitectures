@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecoderscorner.embedcontrol.customization.customdraw.EditCustomDrawablesController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES"  />
+    <ColumnConstraints hgrow="SOMETIMES"  />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Drawing Param Name" />
+      <TextField fx:id="nameField" GridPane.columnIndex="1" />
+      <TableView fx:id="drawingTable"  GridPane.columnSpan="2" GridPane.rowIndex="2">
+        <columns>
+          <TableColumn fx:id="bgTableCol" prefWidth="149.0" text="Bg Color" />
+          <TableColumn fx:id="fgTableCol" prefWidth="148.0" text="Fg Color" />
+          <TableColumn fx:id="startTableCol" prefWidth="92.0" text="Start" />
+          <TableColumn fx:id="endTableCol" prefWidth="85.0" text="End" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="drawingTypeCombo" onAction="#drawingTypeHasChanged" prefHeight="25.0" prefWidth="361.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label text="Custom Drawing Type" GridPane.rowIndex="1" />
+      <ButtonBar GridPane.columnSpan="2" GridPane.rowIndex="3">
+        <buttons>
+          <Button fx:id="deleteRangeButton" mnemonicParsing="false" onAction="#onDeleteRange" text="Delete Range" />
+            <Button mnemonicParsing="false" onAction="#onAddRange" text="Add Range" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#onSave" text="Save" />
+        </buttons>
+      </ButtonBar>
+   </children>
+   <padding>
+      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+   </padding>
+</GridPane>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane styleClass="background" prefWidth="600" prefHeight="400" maxWidth="Infinity" maxHeight="Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecoderscorner.menu.editorui.embed.FormManagerController">
+   <center>
+      <TableView fx:id="formTable"  BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="formNameCol" prefWidth="280.0" text="%ec.form.mgr.col.name" />
+          <TableColumn fx:id="formUuidCol" prefWidth="370.0" text="%ec.form.mgr.col.uuid" />
+          <TableColumn fx:id="formIdCol" prefWidth="120.0" text="%ec.form.mgr.col.id" />
+          <TableColumn fx:id="formModeCol" prefWidth="200.0" text="%ec.form.mgr.col.mode" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <ButtonBar BorderPane.alignment="CENTER">
+        <buttons>
+            <MenuButton mnemonicParsing="false" text="%ec.form.mgr.import">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onImportFile" text="%ec.form.mgr.import.file" />
+                <MenuItem mnemonicParsing="false" onAction="#onImportClipboard" text="%ec.form.mgr.import.clip" />
+                <MenuItem mnemonicParsing="false" onAction="#onExportFile" fx:id="exportFileMenu" text="%ec.form.mgr.export.file" />
+                <MenuItem mnemonicParsing="false" onAction="#onExportClipboard" fx:id="exportClipMenu" text="%ec.form.mgr.export.clip" />
+              </items>
+            </MenuButton>
+            <Button fx:id="editFormButton" mnemonicParsing="false" onAction="#onFormEdit" text="%ec.form.mgr.edit" />
+            <Button fx:id="removeFormButton" mnemonicParsing="false" onAction="#onFormRemove" text="%ec.form.mgr.remove" />
+            <Button mnemonicParsing="false" cancelButton="true" onAction="#onClose" text="%core.close.button" />
+        </buttons>
+      </ButtonBar>
+   </bottom>
+   <padding>
+      <Insets topRightBottomLeft="10.0" />
+   </padding>
+</BorderPane>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecoderscorner.embedcontrol.jfx.controlmgr.panels.AddAuthEntryController">
+   <top>
+      <Label text="%auth.dlg.title" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <ButtonBar BorderPane.alignment="CENTER">
+        <buttons>
+          <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelWasPressed" text="%core.cancel" />
+            <Button fx:id="addAuthenticationButton" defaultButton="true" mnemonicParsing="false" onAction="#addAuthenticationWasPressed" text="%auth.dlg.ok.button" />
+        </buttons>
+      </ButtonBar>
+   </bottom>
+   <padding>
+      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+   </padding>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" />
+          <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="%auth.dlg.name" />
+            <Label text="%auth.dlg.uuid" GridPane.rowIndex="1" />
+            <TextField fx:id="appNameField" GridPane.columnIndex="1" />
+            <TextField fx:id="uuidField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

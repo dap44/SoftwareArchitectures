@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c)  2016-2019 https://www.thecoderscorner.com (Dave Cherry).
+  ~ This product is licensed under an Apache license, see the LICENSE file in the top-level directory.
+  ~
+  -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane styleClass="background" stylesheets="@tcmenu-extras.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.thecoderscorner.menu.editorui.controller.RomLayoutController">
+   <top>
+      <Label prefHeight="28.0" prefWidth="446.0" stylesheets="@tcmenu-extras.css" text="%rom.layout.title" BorderPane.alignment="CENTER"/>
+   </top>
+   <center>
+      <SplitPane>
+         <ScrollPane styleClass="control-background" BorderPane.alignment="CENTER">
+            <VBox fx:id="idContainer" >
+               <Label text="%rom.layout.id"/>
+            </VBox>
+         </ScrollPane>
+         <ScrollPane styleClass="control-background" BorderPane.alignment="CENTER">
+            <VBox fx:id="eepromContainer">
+               <Label text="%rom.layout.eeprom"/>
+            </VBox>
+         </ScrollPane>
+      </SplitPane>
+   </center>
+   <padding>
+      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+   </padding>
+   <bottom>
+      <ButtonBar BorderPane.alignment="CENTER">
+        <buttons>
+          <Button fx:id="closeButton" cancelButton="true" mnemonicParsing="false" onAction="#onClose" text="%core.close.button" />
+        </buttons>
+      </ButtonBar>
+   </bottom>
+</BorderPane>

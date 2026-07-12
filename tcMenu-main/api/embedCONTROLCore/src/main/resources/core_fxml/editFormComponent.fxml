@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" hgap="4" vgap="4"
+          fx:controller="com.thecoderscorner.embedcontrol.customization.formbuilder.EditFormComponentController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="NEVER"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+    </rowConstraints>
+    <children>
+        <Label text="Value"/>
+        <Label text="Column Span" GridPane.rowIndex="1"/>
+        <TextField fx:id="valueField" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
+        <Spinner fx:id="colSpanSpinner" GridPane.columnIndex="1" maxWidth="99999" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets right="3.0"/>
+            </GridPane.margin>
+        </Spinner>
+        <Spinner fx:id="fontSizeSpinner" GridPane.columnIndex="1" maxWidth="99999" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets right="3.0"/>
+            </GridPane.margin>
+        </Spinner>
+        <Label text="Font Size" GridPane.rowIndex="2"/>
+        <Button mnemonicParsing="false" onAction="#onManageColorSets" text="Manage..." GridPane.columnIndex="2" GridPane.rowIndex="3" maxWidth="99999"/>
+        <Label text="Color Scheme" GridPane.rowIndex="3"/>
+        <ComboBox fx:id="fontMeasureCombo" GridPane.columnIndex="2" GridPane.rowIndex="2"  maxWidth="99999"/>
+        <ComboBox fx:id="colorNameCombo" GridPane.columnIndex="1"  maxWidth="99999" GridPane.rowIndex="3">
+            <GridPane.margin>
+                <Insets right="3.0"/>
+            </GridPane.margin>
+        </ComboBox>
+        <Label text="Horizontal Alignment" GridPane.rowIndex="4"/>
+        <Label text="Control Type" GridPane.rowIndex="5"/>
+        <Label text="Text Content" GridPane.rowIndex="6"/>
+        <ComboBox fx:id="controlTypeCombo" GridPane.columnIndex="1" maxWidth="99999" GridPane.rowIndex="5">
+            <GridPane.margin>
+                <Insets right="4.0"/>
+            </GridPane.margin>
+        </ComboBox>
+        <ComboBox fx:id="renderModeCombo" GridPane.columnIndex="1" maxWidth="99999" GridPane.rowIndex="6">
+            <GridPane.margin>
+                <Insets right="4.0"/>
+            </GridPane.margin>
+        </ComboBox>
+        <ComboBox fx:id="alignmentCombo" GridPane.columnIndex="1" maxWidth="99999" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets right="4.0"/>
+            </GridPane.margin>
+        </ComboBox>
+        <ButtonBar GridPane.columnSpan="3" GridPane.rowIndex="8">
+            <buttons>
+                <Button mnemonicParsing="false" onAction="#onSaveAndDismiss" text="Save and Dismiss"/>
+            </buttons>
+        </ButtonBar>
+        <Label text="Customize Drawing" GridPane.rowIndex="7"/>
+        <ComboBox fx:id="customDrawingCombo" GridPane.columnIndex="1"  maxWidth="99999" GridPane.rowIndex="7">
+            <GridPane.margin>
+                <Insets right="4.0"/>
+            </GridPane.margin>
+        </ComboBox>
+        <Button onAction="#manageCustomDrawing" mnemonicParsing="false"  maxWidth="99999" text="Manage.." GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+    </children>
+    <padding>
+        <Insets topRightBottomLeft="10"/>
+    </padding>
+</GridPane>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane styleClass="background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.thecoderscorner.menu.editorui.controller.SearchMenuItemController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <padding>
+        <Insets topRightBottomLeft="10"/>
+    </padding>
+    <Label text="%search.item.label"/>
+    <TextField fx:id="searchField" promptText="%search.item.prompt.text" GridPane.columnIndex="1"/>
+    <ButtonBar GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+    <TableView fx:id="resultsTable" GridPane.columnSpan="3" GridPane.rowIndex="2">
+        <columns>
+            <TableColumn fx:id="subColumn" text="%search.item.col.sub"/>
+            <TableColumn fx:id="itemColumn" text="%search.item.col.item"/>
+            <TableColumn fx:id="typeColumn" text="%search.item.col.type"/>
+        </columns>
+    </TableView>
+    <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancel" text="%core.cancel.text" GridPane.columnIndex="2"/>
+</GridPane>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c)  2016-2019 https://www.thecoderscorner.com (Dave Cherry).
+  ~ This product is licensed under an Apache license, see the LICENSE file in the top-level directory.
+  ~
+  -->
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="rootPane" styleClass="background" stylesheets="@tcmenu-extras.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thecoderscorner.menu.editorui.controller.MenuEditorController">
+   <top>
+      <MenuBar fx:id="mainMenu" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="%menu.file">
+            <items>
+              <MenuItem accelerator="Shortcut+N" mnemonicParsing="false" onAction="#onFileNew" text="%edit.file.new.project" />
+                  <MenuItem accelerator="Shortcut+O" mnemonicParsing="false" onAction="#onFileOpen" text="%edit.file.open.project" />
+                  <Menu fx:id="examplesMenu" mnemonicParsing="false" text="%edit.file.open.example" />
+                  <Menu fx:id="menuRecents" mnemonicParsing="false" text="%edit.file.open.recent" />
+                  <Menu fx:id="menuSketches" mnemonicParsing="false" text="%edit.file.open.sketch" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem accelerator="Shortcut+S" mnemonicParsing="false" onAction="#onFileSave" text="%edit.file.save.project" />
+                  <MenuItem mnemonicParsing="false" onAction="#onFileSaveAs" text="%edit.file.save.project.as">
+                      <accelerator>
+                          <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                      </accelerator>
+                  </MenuItem>
+                  <MenuItem accelerator="Shortcut+R" mnemonicParsing="false" onAction="#onFileExplorer" text="%edit.file.finder.explore" />
+                  <MenuItem accelerator="Shortcut+W" mnemonicParsing="false" onAction="#onFileClose" text="%edit.file.close.project" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#onFileExit" text="%menu.file.exit" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" onShowing="#onShowEditMenu" text="%menu.edit">
+              <items>
+                <MenuItem fx:id="menuCut" mnemonicParsing="false" onAction="#onCut" text="%menu.edit.cut" />
+                  <MenuItem fx:id="menuCopy" mnemonicParsing="false" onAction="#onCopy" text="%menu.edit.copy" />
+                  <MenuItem fx:id="menuPaste" mnemonicParsing="false" onAction="#onPaste" text="%menu.edit.paste" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="menuUndo" accelerator="Shortcut+Z" mnemonicParsing="false" onAction="#onUndo" text="%menu.edit.undo" />
+                  <MenuItem fx:id="menuRedo" accelerator="Shortcut+Y" mnemonicParsing="false" onAction="#onRedo" text="%menu.edit.redo" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGeneralSettings" text="%menu.edit.general.settings" />
+                  <CheckMenuItem fx:id="darkModeMenuFlag" mnemonicParsing="false" onAction="#onDarkModeChange" text="%splash.dialog.dark.mode" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%menu.menuitem">
+                <MenuItem fx:id="menuAddItem" mnemonicParsing="false" onAction="#onAddToTreeMenu" text="%menu.menuitem.add.item">
+                    <accelerator>
+                      <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="DOWN" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
+                <MenuItem fx:id="menuRemoveItem" mnemonicParsing="false" onAction="#onRemoveTreeMenu" text="%menu.menuitem.remove.item">
+                    <accelerator>
+                      <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="DOWN" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
+                <MenuItem accelerator="F10" mnemonicParsing="false" onAction="#onFocusMenuTree"
+                          text="%menu.menuitem.focus.tree"/>
+                <MenuItem accelerator="F9" mnemonicParsing="false" onAction="#onFocusCurrentEditor"
+                          text="%menu.menuitem.focus.editor"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem accelerator="F4" mnemonicParsing="false" onAction="#onSearchPressed"
+                          text="%menu.menuitem.search.items"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem mnemonicParsing="false" onAction="#OnShowPreviewWindow" text="%ec.show.preview.window"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%menu.code">
+                <MenuItem accelerator="Shortcut+G" mnemonicParsing="false" onAction="#onGenerateCode"
+                          text="%menu.code.generate"/>
+                <MenuItem accelerator="Shortcut+L" mnemonicParsing="false" onAction="#onCodeShowLayout"
+                          text="%menu.code.show.layout"/>
+                <MenuItem accelerator="Shortcut+E" mnemonicParsing="false" onAction="#onShowExpanders"
+                          text="%menu.code.show.io.expanders"/>
+                <MenuItem accelerator="Shortcut+M" mnemonicParsing="false" onAction="#onMenuInMenu"
+                          text="%menu.code.menu.in.menu"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem accelerator="F8" mnemonicParsing="false" onAction="#onCreateFontDialog"
+                          text="%menu.code.font.creator"/>
+                <MenuItem accelerator="F7" mnemonicParsing="false" onAction="#onCreateBitmapTool"
+                          text="%menu.code.bitmap.creator"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem accelerator="F6" mnemonicParsing="false" onAction="#onConfigureLocales"
+                          text="%menu.code.locale.configuration"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%menu.embed.control">
+                <MenuItem accelerator="Shortcut+T" mnemonicParsing="false" onAction="#onCreateConnection" text="%menu.embed.create" />
+                <Menu fx:id="embedConnections" mnemonicParsing="false" text="%menu.embed.connections" />
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem accelerator="F5" mnemonicParsing="false" onAction="#OnShowPreviewWindow" text="%ec.show.preview.window" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="Window" onShowing="#windowMenuWillShow" >
+                <MenuItem mnemonicParsing="false" onAction="#onAllToFront" text="%win.all.to.front" />
+                <Menu mnemonicParsing="false" text="%win.active.editors" fx:id="menuWindow">
+                </Menu>
+                <Menu mnemonicParsing="false" text="%win.active.connections" fx:id="menuEmbedWindow">
+                </Menu>
+            </Menu>
+            <Menu mnemonicParsing="false" text="%menu.help">
+                <MenuItem fx:id="aboutMenuItem" accelerator="Shortcut+B" mnemonicParsing="false"
+                          onAction="#aboutMenuPressed" text="%menu.help.about"/>
+                <MenuItem accelerator="F1" mnemonicParsing="false" onAction="#onMenuDocumentation"
+                          text="%menu.help.docs"/>
+                <MenuItem mnemonicParsing="false" onAction="#onGettingStarted" text="%menu.help.getting.started"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem mnemonicParsing="false" onAction="#onTheCodersCorner" text="The Coders Corner Website"/>
+                <MenuItem mnemonicParsing="false" onAction="#onMakeADonation" text="Make Donation - GitHub"/>
+                <MenuItem mnemonicParsing="false" onAction="#onBuyMeACoffee" text="Buy Me A Coffee"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem mnemonicParsing="false" onAction="#onMenuTCCForum" text="%menu.help.old.forum"/>
+                <MenuItem mnemonicParsing="false" onAction="#onMenuDiscussions" text="%menu.help.discussions"/>
+                <MenuItem mnemonicParsing="false" onAction="#onPrepareDiagnostics"
+                          text="%menu.help.prepare.diagnotics"/>
+                <SeparatorMenuItem mnemonicParsing="false"/>
+                <MenuItem mnemonicParsing="false" onAction="#onLanguageResourcesLink" text="%splash.dialog.help.with.translation" />
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+       <SplitPane fx:id="treeViewSplit">
+           <BorderPane BorderPane.alignment="CENTER">
+               <center>
+                   <TreeView fx:id="menuTree" BorderPane.alignment="CENTER" />
+               </center>
+               <bottom>
+                   <HBox BorderPane.alignment="CENTER">
+                       <children>
+                           <Button fx:id="menuTreeAdd" mnemonicParsing="false" onAction="#onAddToTreeMenu">
+                               <graphic>
+                                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                           <Image url="@../img/tree-add.png" />
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                               <tooltip>
+                                   <Tooltip text="Add menu item" />
+                               </tooltip>
+                               <HBox.margin>
+                                   <Insets right="3.0" />
+                               </HBox.margin></Button>
+                           <Button fx:id="menuTreeAddTemplate" mnemonicParsing="false" onAction="#onAddTemplateMenu">
+                               <graphic>
+                                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                           <Image url="@../img/tree-add-template.png" />
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                               <tooltip>
+                                   <Tooltip text="Insert template structure" />
+                               </tooltip>
+                               <HBox.margin>
+                                   <Insets right="3.0" />
+                               </HBox.margin></Button>
+                           <Button fx:id="menuTreeRemove" mnemonicParsing="false" onAction="#onRemoveTreeMenu">
+                               <graphic>
+                                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                           <Image url="@../img/tree-remove.png" />
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                               <tooltip>
+                                   <Tooltip text="Remove menu item" />
+                               </tooltip>
+                               <HBox.margin>
+                                   <Insets right="3.0" />
+                               </HBox.margin></Button>
+                           <Button fx:id="menuTreeCopy" mnemonicParsing="false" onAction="#onTreeCopy">
+                               <graphic>
+                                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                           <Image url="@../img/tree-copy.png" />
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                               <tooltip>
+                                   <Tooltip text="Copy selected item(s)" />
+                               </tooltip>
+                               <HBox.margin>
+                                   <Insets right="3.0" />
+                               </HBox.margin>
+                           </Button>
+                           <Button fx:id="menuTreePaste" mnemonicParsing="false" onAction="#onTreePaste">
+                               <graphic>
+                                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                           <Image url="@../img/tree-paste.png" />
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                               <tooltip>
+                                   <Tooltip text="Paste item(s)" />
+                               </tooltip>
+                               <HBox.margin>
+                                   <Insets right="3.0" />
+                               </HBox.margin>
+                           </Button>
+                           <Button mnemonicParsing="false" onAction="#onSearchPressed" prefHeight="29.0" prefWidth="54.0">
+                               <graphic>
+                                   <ImageView fitHeight="20.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                           <Image url="@../img/tree-search.png" />
+                                       </image>
+                                   </ImageView>
+                               </graphic>
+                               <HBox.margin>
+                                   <Insets />
+                               </HBox.margin>
+                           </Button>
+                       </children>
+                       <opaqueInsets>
+                           <Insets />
+                       </opaqueInsets>
+                       <BorderPane.margin>
+                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                       </BorderPane.margin>
+                   </HBox>
+               </bottom>
+               <top>
+                   <MenuButton fx:id="localeMenuButton" mnemonicParsing="false" text="Locale" BorderPane.alignment="CENTER">
+                       <BorderPane.margin>
+                           <Insets bottom="4.0" />
+                       </BorderPane.margin>
+                   </MenuButton>
+               </top>
+           </BorderPane>
+           <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <padding>
+                   <Insets bottom="5.0" left="5.0" right="5.0"/>
+               </padding>
+               <Label fx:id="currentEditLabel" styleClass="item-title" text="Editor">
+                   <padding>
+                       <Insets bottom="6.0" top="4.0"/>
+                   </padding>
+               </Label>
+               <BorderPane fx:id="editorBorderPane"/>
+           </VBox>
+       </SplitPane>
+   </center>
+   <bottom>
+       <HBox spacing="10">
+           <Hyperlink onAction="#onSponsorLinkPressed" text="Sponsor on GitHub" />
+           <Hyperlink onAction="#onBuyMeACoffee" text="Buy Me A Coffee" />
+           <Hyperlink onAction="#onFollowTwitter" text="Follow Twitter"/>
+           <Hyperlink onAction="#onFollowFacebook" text="Follow Facebook"/>
+       </HBox>
+   </bottom>
+    <padding>
+        <Insets top="0" left="10" right="10" bottom="10" />
+    </padding>
+</BorderPane>

@@ -1,0 +1,62 @@
+/*
+ * Copyright (c)  2016-2019 https://www.thecoderscorner.com (Dave Cherry).
+ * This product is licensed under an Apache license, see the LICENSE file in the top-level directory.
+ *
+ */
+
+package com.thecoderscorner.menu.domain;
+
+import com.thecoderscorner.menu.domain.util.MenuItemVisitor;
+
+import java.util.Objects;
+
+/**
+ * ActionMenuItem represents a menu item that is a one shot action, in that when triggered it
+ * just runs the callback on the embedded side.
+ */
+public class ActionMenuItem extends MenuItem {
+
+    public ActionMenuItem() {
+        super("", null, -1, -1, null, false, false, true, false);
+        // needed for serialisation
+    }
+
+    public ActionMenuItem(String name, String variableName, int id, String functionName, int eepromAddr,
+                          boolean readOnly, boolean localOnly, boolean visible, boolean staticInRAM) {
+        super(name, variableName, id, eepromAddr, functionName, readOnly, localOnly, visible, staticInRAM);
+    }
+
+    /**
+     * @return false - actions don't have child elements
+     */
+    @Override
+    public boolean hasChildren() {
+        return false;
+    }
+
+    @Override
+    public void accept(MenuItemVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActionMenuItem that = (ActionMenuItem) o;
+        return getId() == that.getId() &&
+                getEepromAddress() == that.getEepromAddress() &&
+                isReadOnly() == that.isReadOnly() &&
+                isVisible() == that.isVisible() &&
+                isLocalOnly() == that.isLocalOnly() &&
+                isStaticDataInRAM() == that.isStaticDataInRAM() &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getFunctionName(), that.getFunctionName()) &&
+                Objects.equals(getVariableName(), that.getVariableName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getId(), getEepromAddress(), getFunctionName(), getVariableName(), isReadOnly(), isLocalOnly(), isStaticDataInRAM());
+    }
+}

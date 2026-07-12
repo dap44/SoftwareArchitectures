@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane vgap="5" hgap="5" styleClass="background" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.thecoderscorner.menu.editorui.controller.ConfigureLocalesController">
+    <padding><Insets topRightBottomLeft="10"/></padding>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+        <ColumnConstraints hgrow="SOMETIMES"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <Label text="%locale.dialog.selected.locales" GridPane.columnIndex="2"/>
+    <Label text="%locale.dialog.available.locales"/>
+    <ListView fx:id="availableLocaleList" GridPane.rowIndex="1"/>
+    <ListView fx:id="activeLocalList" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+    <VBox spacing="5"  alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <GridPane.margin>
+            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
+        </GridPane.margin>
+        <Label text="%locale.dialog.country"/>
+        <ComboBox fx:id="countryCodeCombo">
+        </ComboBox>
+        <Button fx:id="moveToActiveButton" maxWidth="99999" mnemonicParsing="false" onAction="#onMoveToActive" text="&gt;&gt;"/>
+        <Button fx:id="removeFromActiveButton" maxWidth="99999" mnemonicParsing="false" onAction="#onRemoveFromActive"
+                text="&lt;&lt;"/>
+    </VBox>
+    <ButtonBar GridPane.columnSpan="3" GridPane.rowIndex="3">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#onOnlineHelp" text="%core.online.help"/>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancelSettings" text="%core.cancel.text"/>
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#onApplySettings" text="%core.apply.text"/>
+        </buttons>
+    </ButtonBar>
+    <Label text="%locale.dialog.resource.bundle.location" GridPane.rowIndex="2"/>
+    <TextField fx:id="fileResourceLocationField" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="2"
+               GridPane.rowIndex="2"/>
+</GridPane>
